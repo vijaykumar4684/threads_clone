@@ -15,7 +15,7 @@ export default function PostCard({
   noRedirect,
   isAuthPost,
 }) {
-  const [isLiked, setIsLiked] = useState<string>("");
+  const [isLiked, setIsLiked] = useState("");
   const likeDislike = (status) => {
     setIsLiked(status);
     axios

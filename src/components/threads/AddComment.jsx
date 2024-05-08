@@ -19,9 +19,9 @@ import { MessageCircle } from "lucide-react";
 export default function AddComment({ post }) {
   const { data } = useSession();
   const { toast } = useToast();
-  const [content, setContent] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [errors, setErrors] = useState<PostErrorType>({});
+  const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const submit = () => {
     setLoading(true);
