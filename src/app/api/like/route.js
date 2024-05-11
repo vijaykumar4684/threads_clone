@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { CustomSession, authOptions } from "../auth/[...nextauth]/options";
+import { authOptions } from "../auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import prisma from "@/DB/db.config";
 
-export async function POST(request) {
+export async function POST(NextRequest) {
   const session = await getServerSession(authOptions);
 
   if (!session) {
     return NextResponse.json({ status: 401, message: "Un-Authorized" });
   }
-  const payload = await request.json();
+  const payload = await NextRequest.json();
 
   if (!payload.post_id || !payload.toUserId) {
     return NextResponse.json({

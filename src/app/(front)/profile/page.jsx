@@ -8,7 +8,6 @@ import PostCard from "@/components/common/PostCard";
 import CommentCard from "@/components/common/CommentCard";
 import DyanmicNavBar from "@/components/common/DyanmicNavBar";
 import {
-  CustomSession,
   authOptions,
 } from "@/app/api/auth/[...nextauth]/options";
 

@@ -1,14 +1,14 @@
 import prisma from "@/DB/db.config";
 import { NextRequest, NextResponse } from "next/server";
-import { CustomSession, authOptions } from "../auth/[...nextauth]/options";
+import { authOptions } from "../auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 
-export async function GET(request) {
+export async function GET(NextRequest) {
   const session = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json({ status: 401, message: "Un-Authorized" });
   }
-  const query = request.nextUrl.searchParams.get("query");
+  const query = NextRequest.nextUrl.searchParams.get("query");
   const users = await prisma.user.findMany({
     where: {
       OR: [

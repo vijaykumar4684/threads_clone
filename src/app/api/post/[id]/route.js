@@ -1,11 +1,11 @@
 import prisma from "@/DB/db.config";
 import { NextRequest, NextResponse } from "next/server";
-import { CustomSession, authOptions } from "../../auth/[...nextauth]/options";
+import { authOptions } from "../../auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import { join } from "path";
 import { rmSync } from "fs";
 
-export async function GET(request,{ params }) {
+export async function GET(NextRequest,{ params }) {
   const session = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json({ status: 401, message: "Un-Authorized" });
@@ -48,7 +48,7 @@ export async function GET(request,{ params }) {
 
 // * Delete Post
 
-export async function DELETE(request) {
+export async function DELETE(NextRequest) {
   const session = await getServerSession(authOptions);
 
   if (!session) {

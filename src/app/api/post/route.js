@@ -3,14 +3,14 @@ import vine, { errors } from "@vinejs/vine";
 import { CustomErrorReporter } from "@/validators/CustomErrorReporter";
 import { postSchema } from "@/validators/postSchema";
 import { getServerSession } from "next-auth";
-import { CustomSession, authOptions } from "../auth/[...nextauth]/options";
+import { authOptions } from "../auth/[...nextauth]/options";
 import { imagevalidator } from "@/validators/imageValidator";
 import { join } from "path";
 import { writeFile } from "fs/promises";
 import { getRandomNumber } from "@/lib/utils";
 import prisma from "@/DB/db.config";
 
-export async function GET(request) {
+export async function GET(NextRequest) {
   const session = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json({ status: 401, message: "Un-Authorized" });
@@ -42,13 +42,13 @@ export async function GET(request) {
   });
 }
 
-export async function POST(request) {
+export async function POST(NextRequest) {
   try {
     const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ status: 401, message: "Un-Authorized" });
     }
-    const formData = await request.formData();
+    const formData = await NextRequest.formData();
     const data = {
       content: formData.get("content"),
       image: "",

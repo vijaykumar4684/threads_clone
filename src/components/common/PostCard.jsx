@@ -73,7 +73,7 @@ export default function PostCard({
         </div>
         <div className="mt-2">
           <span className="font-light">{post.comment_count} Replies</span>
-          <span className="font-light ml-3">{post.like_count} Likes</span>
+          <span className="font-light ml-3">{post.like_count>0?post.like_count:0} Likes</span>
         </div>
       </div>
     </div>

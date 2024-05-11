@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { CustomSession, authOptions } from "../auth/[...nextauth]/options";
+import { authOptions } from "../auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 import vine, { errors } from "@vinejs/vine";
 import { CustomErrorReporter } from "@/validators/CustomErrorReporter";
 import prisma from "@/DB/db.config";
 import { commentSchema } from "@/validators/commentSchema";
 
-export async function GET(request) {
+export async function GET(NextRequest) {
   // * Add Notification
   try {
     await prisma.notification.create({

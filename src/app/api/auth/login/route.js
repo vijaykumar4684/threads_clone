@@ -5,9 +5,9 @@ import { loginSchema } from "@/validators/authSchema";
 import prisma from "@/DB/db.config";
 import bcrypt from "bcryptjs";
 
-export async function POST(request) {
+export async function POST(NextRequest) {
   try {
-    const body = await request.json();
+    const body = await NextRequest.json();
     console.log(body)
     vine.errorReporter = () => new CustomErrorReporter();
     const validator = vine.compile(loginSchema);
